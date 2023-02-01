@@ -1,0 +1,164 @@
+Processo seletivo Bisa - Primeira etapa
+
+Instalação e Configuração do Apache 2.4
+Baseado no vídeo:
+https://www.youtube.com/watch?v=Eg0M5x-BBGw&t=558s
+
+Site de apoio:
+https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Install-Apache-Web-Server-24-Windows-10-ServerRoot-Error
+
+Baixar através do site https://www.apachelounge.com/download/ o arquivo ZIP
+Extrair arquivos na pasta Downloads
+
+Ir em Opções do Explorador de Arquivos e desabilitar as extensões de arquivos conhecidos
+
+Copiar toda a pasta do Apache24 e colar em C:
+
+(ao testarmos neste momento http://localhost/ não teremos retorno)
+
+Executar CMD como administrador
+
+Criar um novo arquivo de texto local.bat *na pasta Apache24 e editar
+
+Arquivo local.bat
+cd “C:\Apache24\bin”
+cmd
+
+Executar local.bat como administrador e executamos httpd.exe -k install
+
+Permitir acessos públicos
+
+(ao testarmos neste momento http://localhost/ ainda não teremos retorno)
+
+Devemos executar httpd.exe -k start no terminal
+Pronto, ao testarmos neste momento http://localhost/ teremos retorno =)
+
+
+- Podemos alterar a mensagem do Apache pelo arquivo em Apache 24 > htdocs > index.html
+
+Instalação e Configuração do PHP 7.4
+Baseado no vídeo:
+https://www.youtube.com/watch?v=lb50xBGWa2A
+
+Executar httpd.exe -k stop no terminal
+
+Abrir CMD como administrador
+
+Visitar https://www.php.net/downloads.php e selecionar para Windows
+Então em https://windows.php.net/download#php-8.2 baixar a pasta ZIP da versão do PHP desejada
+
+Na pasta Apache24 > conf vamos editar o arquivo de texto httpd.conf
+No final desse arquivo vamos digitar
+
+LoadModule php7_module “c:/php7/php7apache2_4.dll”
+<FilesMatch \.php$>
+	SetHandler application/x-httpd-php
+</FilesMatch>
+PHPIniDir “C:/php7”
+
+Vamos extrair a pasta do PHP em Downloads e copiar para C:
+Renomeamos a pasta para php7
+
+
+Executamos httpd.exe -k start no terminal novamente
+
+Na pasta php7 nós copiamos o arquivo php.ini-production e renomeamos a cópia para php.ini
+Neste “mais novo” arquivo pesquisamos a palavra max e colocamos o valor de max_execution_time para = 100000000
+
+Vamos digitar no navegador http://127.0.0.1/ 
+
+Vamos testar o PHP com um arquivo PHP ip.php (então devemos criar este arquivo na pasta Apache24 > htdocs)
+
+Neste arquivo ip.php 
+<?php
+$ip = $_SERVER[‘REMOTE_ADDR’];
+echo trim($ip);
+$nome = “ESTÁGIO BISA”;
+echo $nome;
+?>
+
+Vamos digitar no navegador http://127.0.0.1/ip.php ou http://localhost/ip.php
+
+
+Instalação e Configuração do MySQL 8+
+Utilizei como base o vídeo: https://www.youtube.com/watch?v=eq-e_n7lm2M 
+Acessamos o site https://dev.mysql.com/downloads/ e seleciona o download para Windows
+
+
+Segue os passos normais de instalação.
+
+Definimos uma senha para o root do MySQL.
+Segue os passos normais de instalação. 
+
+Antes de finalizar vamos em C: 
+>ProgramFiles > MySQL  > MySQL8.0 > bin
+Copiamos tudo isso e na barra de pesquisa, pesquisamos Editar variáveis de ambiente do sistema
+[Advanced] - Environment Variables - (new) e cola aquele caminho
+Aperta tudo OK e pronto
+Finaliza a instalação
+
+Podemos abrir o CMD e executar mysql –version
+
+Depois podemos executar mysql -u root -p
+digitamos a senha:
+OK! ESTAMOS DENTRO DO BANCO
+
+show databases;
+create database estagio; //aqui poderia ter qualquer nome
+show databases;
+
+Podemos ir agora no Workbench e abri-lo também.
+
+Instalar e Configurar DBeaver
+Vídeo explicativo:
+https://www.youtube.com/watch?v=zgxkZU6A9_4
+
+Site oficial para download: https://dbeaver.io/download/ 
+E selecionamos a opção Windows (installer)
+Sempre aperta NEXT 
+
+Criamos um banco de dados para teste. O nome do nosso foi… teste  !!!!! kkkkkkkk
+
+Vamos criar uma nova conexão da tomadinha azul e selecionamos a conexão com o MySQL 
+Podemos conectar com um banco de dados específico ou não (preferi não)
+Escolhermos o usuário root e passamos a senha
+Testamos a conexão
+Fazemos o download do drive necessário pra rodar o MySQL e faz um teste de conexão
+TUDO OK!
+
+Podemos gerenciar todos os nossos bancos de dados.
+Podemos também clicar com o botão direito e criar um novo banco de dados.
+
+
+Instalação e Configuração do GIT
+Utilizei como ferramenta de apoio o vídeo: https://www.youtube.com/watch?v=IJ2VDiDLzj8&t=22s
+
+Fiz o download no site oficial: https://git-scm.com/download/win
+
+Executamos o download e só damos NEXT e FINISH
+
+Como saber se já está instalado? Em qualquer lugar do gerenciador de arquivos posso clicar com o botão direito e vou ver 2 opções: a opção gráfica e o git bash
+
+Abra o git bash e execute o comando git config – - global user.name “guilhermegomes1”
+
+Depois execute o comando git config – - global user.email “guilhermegomes.csilva@gmail.com”
+
+Podemos ver através de git config – - list algumas configurações
+
+
+Instalação e Configuração do VSCode
+Vídeo de apoio: https://www.youtube.com/watch?v=49K-Zxc8A7A
+
+Site oficial para download: https://code.visualstudio.com/download
+
+Selecionei a opção de 64bits e só dei NEXT(na verdade selecionei 2 campos a mais para poder abrir a pasta dentro do VSCode) e finish. 
+
+Extensões VSCode para PHP
+Vídeo de apoio: https://www.youtube.com/watch?v=p6yAgjCQV2k
+
+Instalação e Configuração Insomnia.rest
+Vídeo de apoio: https://www.youtube.com/watch?v=YATd7vjQiJM
+Site oficial para download:
+https://insomnia.rest/download
+
+Clicar em instalar para Windows
